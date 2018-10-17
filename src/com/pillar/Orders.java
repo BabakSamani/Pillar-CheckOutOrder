@@ -27,6 +27,7 @@ public class Orders {
     }
 
     public double totalCost(Item item, double quntity){
-        return item.getPrice() * quntity;
+
+        return ( item.getPrice()-item.getMarkedDown() ) * quntity;
     }
 }

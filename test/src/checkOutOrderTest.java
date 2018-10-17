@@ -32,6 +32,13 @@ public class checkOutOrderTest {
     // Test cases with markedDowns
     @Test
     public void whenAnItemByEachUnitWithMarkedDownIsAddedToOrderReturnsTotalCost(){
+        // $0.50 markedDown applied for this item
+        Item item = new Item("Honey", 5.67, 0.50, "None");
+        double quantity = 2;
+
+        Orders order = new Orders(item, quantity);
+
+        assertEquals(2*(5.67-0.50), order.totalCost(item, quantity));
 
     }
 
