@@ -6,11 +6,7 @@ public class Item {
     private double markedDown;      // It can be 0.20 reduce in price if there is a markedDown
     private String special;         // There can be a special offer like "Buy one get one free"
 
-    public Item(String name, double price, double markedDown, String special){
-        this.name = name;
-        this.price = price;
-        this.markedDown = markedDown;
-        this.special = special;
+    public Item(){
     }
 
     public String getName() {

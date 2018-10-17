@@ -19,12 +19,12 @@ us for removing any item from order list.\
 > Need to have CheckOut process. In this step the calculation will be applied.
 >
 
-Develop
+Development
 ------------------------------------------------------------------------------------------------------------------------
 
 Test
 ------------------------------------------------------------------------------------------------------------------------
 There are several initial test cases that has to be applied for testing this application.
 
-Produce
+Production
 ------------------------------------------------------------------------------------------------------------------------
