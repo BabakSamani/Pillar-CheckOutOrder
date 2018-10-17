@@ -1,6 +1,10 @@
 # Pillar-codingChallenge-checkoutOrder
-A coding challenge for creating Test-Driven Development with Java. Based on my understanding of Kata Problem Solving, 
-four steps should be taken in developing an application with this method, design, develop, test and produce.
+A coding challenge for creating Test-Driven Development with Java. Based on my understanding of Kata Problem Solving
+and programming, four steps should be taken in developing an application with this method, design, develop, test and 
+produce.
+
+This challenge is about developing a check out process that can calculate the total cost of an order that includes a 
+list of items. Some items in the order might have markedDown or special offers that would effect the total cost. 
 
 Design
 ------------------------------------------------------------------------------------------------------------------------

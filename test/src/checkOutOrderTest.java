@@ -29,4 +29,10 @@ public class checkOutOrderTest {
         assertEquals(3.38 * 2.38, order.totalCost(item, quantity));
     }
 
+    // Test cases with markedDowns
+    @Test
+    public void whenAnItemByEachUnitWithMarkedDownIsAddedToOrderReturnsTotalCost(){
+
+    }
+
 }
