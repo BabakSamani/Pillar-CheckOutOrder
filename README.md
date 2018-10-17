@@ -8,6 +8,11 @@ list of items. Some items in the order might have markedDown or special offers t
 
 Design
 ------------------------------------------------------------------------------------------------------------------------
+Java object oriented programming is applied for developing this application, and ``org.junit.Test, 
+junit.framework.TestCase.assertEquals`` packages are imported to create the test classes and check whether the produced
+classes can pass the test cases.
+Initially, the following steps are applied for designing the application.
+
 > Need to have Items or products, need to have Orders for each customer. An arrayList to create the order that enables 
 us for removing any item from order list.\
 > markedDownItems pool includes items that have discount. An arrayList to create this pool.\
@@ -19,6 +24,7 @@ Develop
 
 Test
 ------------------------------------------------------------------------------------------------------------------------
+There are several initial test cases that has to be applied for testing this application.
 
 Produce
 ------------------------------------------------------------------------------------------------------------------------
