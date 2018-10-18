@@ -93,6 +93,23 @@ public class checkOutOrderTest {
         item.setName("Dove body wash");
         item.setPrice(5.94);
         item.setMarkedDown(0.00);
-        item.setSpecial("Buy 2 get 1 %50 off");
+
+        item.setSpecial("Buy 1 get 1 free");
+
+        double quantity = 2;
+        order = new Orders(item, quantity, "10/18/2018");
+
+        double totalCost = checkOutProcess.CalculateTotalCost(order);
+
+        assertEquals((2-1)*(5.94-0.00), totalCost);
+
+        item.setSpecial("Buy 2 get 1 free");
+        quantity = 3;
+        order = new Orders(item, quantity, "10/18/2018");
+
+        totalCost = checkOutProcess.CalculateTotalCost(order);
+        assertEquals((3-1)*(5.94-0.00), totalCost);
+
+//        item.setSpecial("Buy 2 get 1 %50 off");
     }
 }
