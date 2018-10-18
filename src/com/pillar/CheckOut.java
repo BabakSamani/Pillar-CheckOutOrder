@@ -22,7 +22,7 @@ public class CheckOut {
             Pattern BuyNGetMFree = Pattern.compile("buy\\s([0-9]+)\\sget\\s([0-9]+)\\sfree");
             Matcher matcher_NMFree = BuyNGetMFree.matcher(special);
             Pattern p; Matcher m;
-            double N,M;
+            double N,M,X;
             if (matcher_NMFree.find()) {
                 // Now extract the N and M numbers from string
                 p = Pattern.compile("\\d+");
@@ -63,9 +63,37 @@ public class CheckOut {
 
                 totalCost = (orders.getItem().getPrice() - orders.getItem().getMarkedDown()) * N;
                 totalCost += (orders.getItem().getPrice()/2 - orders.getItem().getMarkedDown()) * M;
+
+                System.out.printf("Total Cost: %f\n", Round(totalCost,2));
             }
 
-            //Setting up the special offer for "Buy N items get M at %X off"
+            // Setting up the special offer for "Buy N items get M at %X off"
+            // Buy 2 get 1 at %30 off
+            Pattern BuyNGetMXPrecentOff = Pattern.compile("buy\\s([0-9]+)\\sget\\s([0-9]+)\\sat\\s%([0-9]+)\\soff");
+            Matcher matcher_NMXPercent = BuyNGetMXPrecentOff.matcher(special);
+
+            if (matcher_NMXPercent.find()){
+                // Extract N and M from string
+                p = Pattern.compile("\\d+");
+                m = p.matcher(special);
+                double numbers[] = new double[3];
+                int i = 0;
+                while (m.find()) {
+                    numbers[i] = Double.parseDouble(m.group());
+                    i++;
+                }
+
+                N = numbers[0];
+                M = numbers[1];
+                X = numbers[2];
+
+                totalCost = (orders.getItem().getPrice() - orders.getItem().getMarkedDown()) * N;
+                totalCost += (orders.getItem().getPrice()*(1-(X/100)) - orders.getItem().getMarkedDown()) * M;
+
+                System.out.printf("Total Cost: %f\n", Round(totalCost,2));
+
+            }
+
         }
 
         return totalCost;

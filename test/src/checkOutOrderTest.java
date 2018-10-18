@@ -113,6 +113,16 @@ public class checkOutOrderTest {
         totalCost = checkOutProcess.CalculateTotalCost(order);
         assertEquals((2*5.94) + (5.94/2), totalCost);
 
-//        item.setSpecial("Buy 2 get 1 %50 off");
+        item.setSpecial("Buy 2 get 1 at %50 off");
+        quantity = 3;
+        order = new Orders(item, quantity, "10/18/2018");
+        totalCost = checkOutProcess.CalculateTotalCost(order);
+        assertEquals((2*5.94) + (5.94/2), totalCost);
+
+        item.setSpecial("Buy 2 get 1 at %30 off");
+        quantity = 3;
+        order = new Orders(item, quantity, "10/18/2018");
+        totalCost = checkOutProcess.CalculateTotalCost(order);
+        assertEquals((2*5.94) + (5.94*0.7), totalCost);
     }
 }
