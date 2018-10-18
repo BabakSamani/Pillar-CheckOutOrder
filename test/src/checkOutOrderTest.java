@@ -129,8 +129,19 @@ public class checkOutOrderTest {
         quantity = 3;
         order = new Orders(item, quantity, "10/18/2018");
         totalCost = checkOutProcess.CalculateTotalCost(order);
-        assertEquals(3*5.00, totalCost);
-        // "N for $X." For example, "3 for $5.00"
+        assertEquals(3*5.50, totalCost);
+
+        item.setSpecial("3 for $4.50");
+        quantity = 2;
+        order = new Orders(item, quantity, "10/18/2018");
+        totalCost = checkOutProcess.CalculateTotalCost(order);
+        assertEquals(2*5.94, totalCost);
+
+        item.setSpecial("3 for $5.00");
+        quantity = 5;
+        order = new Orders(item, quantity, "10/18/2018");
+        totalCost = checkOutProcess.CalculateTotalCost(order);
+        assertEquals((3*5.00)+(2*5.94), totalCost);
     }
 
 

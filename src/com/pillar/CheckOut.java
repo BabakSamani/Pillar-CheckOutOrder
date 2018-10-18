@@ -113,7 +113,14 @@ public class CheckOut {
                 N = numbers[0];
                 X = numbers[1] + numbers[2]/100;
 
-                totalCost = X * N;
+                if (N == orders.getQuantity()){ totalCost = X * N;}
+                else if (orders.getQuantity() > N){
+                    totalCost = N * X;
+                    totalCost += (orders.getItem().getPrice() - orders.getItem().getMarkedDown()) * (orders.getQuantity() - N);
+
+                }else{
+                    totalCost = (orders.getItem().getPrice() - orders.getItem().getMarkedDown()) * orders.getQuantity();
+                }
 
                 System.out.printf("Total Cost: %f\n", Round(totalCost,2));
             }
