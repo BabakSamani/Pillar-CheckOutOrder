@@ -1,17 +1,20 @@
-import org.junit.Before;
-import org.junit.Test;
-import static junit.framework.TestCase.assertEquals;
 import com.pillar.Item;
 import com.pillar.Orders;
+import com.pillar.CheckOut;
+import org.junit.Before;
+import org.junit.Test;
 
+import static junit.framework.TestCase.assertEquals;
 
 public class checkOutOrderTest {
     private Item item;
     private Orders order;
+    private CheckOut checkOutProcess;
 
     @Before
     public void setUp(){
         item = new Item();
+        checkOutProcess = new CheckOut();
     }
 
     // In the following test cases an order has only one item
@@ -22,10 +25,13 @@ public class checkOutOrderTest {
         item.setMarkedDown(0.00);
         item.setSpecial("None");
 
-        double quantity = 2; // This item is sold at an "each" price.
-        order = new Orders(item, quantity);
 
-        assertEquals( 2*1.89, order.totalCost(item, quantity) );
+        double quantity = 2; // This item is sold at an "each" price.
+        order = new Orders(item, quantity, "10/17/2018");
+
+        double totalCost = checkOutProcess.CalculateTotalCost(order);
+
+        assertEquals( 2*1.89, totalCost );
 
     }
 
@@ -39,9 +45,11 @@ public class checkOutOrderTest {
 
         double quantity = 3.38; // This item is sold by "weight"
 
-        order = new Orders(item, quantity);
+        order = new Orders(item, quantity, "10/17/2018");
 
-        assertEquals(3.38 * 2.38, order.totalCost(item, quantity));
+        double totalCost = checkOutProcess.CalculateTotalCost(order);
+
+        assertEquals(3.38 * 2.38, totalCost);
     }
 
     // Test cases with markedDowns
@@ -54,9 +62,11 @@ public class checkOutOrderTest {
 
         double quantity = 2;
 
-        order = new Orders(item, quantity);
+        order = new Orders(item, quantity, "10/17/2018");
 
-        assertEquals(2*(5.67-0.50), order.totalCost(item, quantity));
+        double totalCost = checkOutProcess.CalculateTotalCost(order);
+
+        assertEquals(2*(5.67-0.50), totalCost);
 
     }
 
@@ -70,8 +80,19 @@ public class checkOutOrderTest {
 
         double quantity = 3.67;
 
-        order = new Orders(item, quantity);
+        order = new Orders(item, quantity, "10/17/2018");
 
-        assertEquals(3.67*(5.99-0.75), order.totalCost(item, quantity));
+        double totalCost = checkOutProcess.CalculateTotalCost(order);
+
+        assertEquals(3.67*(5.99-0.75), totalCost);
+    }
+
+    // Test cases with specials
+    @Test
+    public void whenAnItemByEachUnitPriceAndSpecialOfferIsAddedToOrderReturnTotalCost(){
+        item.setName("Dove body wash");
+        item.setPrice(5.94);
+        item.setMarkedDown(0.00);
+        item.setSpecial("Buy 2 get 1 %50 off");
     }
 }

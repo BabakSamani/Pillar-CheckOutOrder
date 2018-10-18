@@ -1,13 +1,19 @@
 package com.pillar;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class Orders {
     private Item item;
-    private double quntiyt;
+    private double quantity;
+    private String date;
 
     // Class constructor
-    public Orders(Item item, double quantity){
+    public Orders(Item item, double quantity, String date) {
         this.item = item;
-        this.quntiyt = quantity;
+        this.quantity = quantity;
+        this.date = date;
+
     }
 
     public Item getItem() {
@@ -18,16 +24,32 @@ public class Orders {
         this.item = item;
     }
 
-    public double getQuntiyt() {
-        return quntiyt;
+    public double getQuantity() {
+        return quantity;
     }
 
-    public void setQuntiyt(double quntiyt) {
-        this.quntiyt = quntiyt;
+    public void setQuantity(double quantity) {
+        this.quantity = quantity;
     }
 
-    public double totalCost(Item item, double quntity){
 
-        return ( item.getPrice()-item.getMarkedDown() ) * quntity;
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+
+    public void createJsonObject(Item item, double quantity, String date) throws JSONException{
+
+        JSONObject orderObj = new JSONObject();
+        orderObj.put("item", item);
+        orderObj.put("quantity", quantity);
+        orderObj.put("date", date);
+
+        System.out.print(orderObj);
+
     }
 }
