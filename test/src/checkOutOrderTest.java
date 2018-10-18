@@ -142,6 +142,8 @@ public class checkOutOrderTest {
         order = new Orders(item, quantity, "10/18/2018");
         totalCost = checkOutProcess.CalculateTotalCost(order);
         assertEquals((3*5.00)+(2*5.94), totalCost);
+
+
     }
 
 
