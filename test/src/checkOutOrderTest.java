@@ -87,7 +87,7 @@ public class checkOutOrderTest {
         assertEquals(3.67*(5.99-0.75), totalCost);
     }
 
-    // Test cases with specials
+    // Test cases with specials for items that are sold by each
     @Test
     public void whenAnItemByEachUnitPriceAndSpecialOfferIsAddedToOrderReturnTotalCost(){
         double quantity, totalCost;
@@ -124,5 +124,14 @@ public class checkOutOrderTest {
         order = new Orders(item, quantity, "10/18/2018");
         totalCost = checkOutProcess.CalculateTotalCost(order);
         assertEquals((2*5.94) + (5.94*0.7), totalCost);
+
+        item.setSpecial("3 for $5.50");
+        quantity = 3;
+        order = new Orders(item, quantity, "10/18/2018");
+        totalCost = checkOutProcess.CalculateTotalCost(order);
+        assertEquals(3*5.00, totalCost);
+        // "N for $X." For example, "3 for $5.00"
     }
+
+
 }

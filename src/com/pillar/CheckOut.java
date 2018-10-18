@@ -1,12 +1,13 @@
 package com.pillar;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.regex.*;
 
 
 public class CheckOut {
 
-    public CheckOut() {
-    }
+    public CheckOut() {}
 
     public double CalculateTotalCost(Orders orders) {
 
@@ -23,6 +24,7 @@ public class CheckOut {
             Matcher matcher_NMFree = BuyNGetMFree.matcher(special);
             Pattern p; Matcher m;
             double N,M,X;
+
             if (matcher_NMFree.find()) {
                 // Now extract the N and M numbers from string
                 p = Pattern.compile("\\d+");
@@ -91,7 +93,29 @@ public class CheckOut {
                 totalCost += (orders.getItem().getPrice()*(1-(X/100)) - orders.getItem().getMarkedDown()) * M;
 
                 System.out.printf("Total Cost: %f\n", Round(totalCost,2));
+            }
 
+            // Setting up the special offer for "N for $X"
+            // Buy 2 get 1 at %30 off
+            Pattern NForX = Pattern.compile("^([0-9]+)\\sfor\\s\\$(\\d*\\.?\\d*)$");
+            Matcher matcher_NForX = NForX.matcher(special);
+            if (matcher_NForX.find()){
+                // Extract N and X from string
+                p = Pattern.compile("\\d+");
+                m = p.matcher(special);
+                double numbers[] = new double[3];
+                int i = 0;
+                while (m.find()) {
+                    numbers[i] = Double.parseDouble(m.group());
+                    i++;
+                }
+
+                N = numbers[0];
+                X = numbers[1] + numbers[2]/100;
+
+                totalCost = X * N;
+
+                System.out.printf("Total Cost: %f\n", Round(totalCost,2));
             }
 
         }
